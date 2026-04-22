@@ -7,31 +7,31 @@
 </head>
 <body>
 
-<h1>Zensor Lite - Bike Safety System</h1>
+<div class="main">
 
-<div class="container">
+    <h1>Zensor Lite 🚦</h1>
+    <p class="subtitle">Smart Bike Safety Monitoring System</p>
 
-    <label>Enter Speed (km/h):</label>
-    <input type="number" id="speed" placeholder="Enter speed">
+    <div class="card">
 
-    <br><br>
+        <label>Enter Speed (km/h)</label>
+        <input type="number" id="speed" placeholder="e.g. 60">
 
-    <button onclick="checkSpeed()">Check Speed</button>
-    <button onclick="fatigueAlert()">I feel sleepy</button>
-    <button onclick="getWeather()">Check Weather</button>
+        <div class="buttons">
+            <button onclick="checkSpeed()">Check Speed</button>
+            <button onclick="fatigueAlert()">Fatigue Alert</button>
+            <button onclick="getWeather()">Weather</button>
+        </div>
 
-    <div id="alerts"></div>
+        <div id="alerts"></div>
 
-    <br><br>
+        <canvas id="speedChart"></canvas>
 
-    <canvas id="speedChart"></canvas>
+    </div>
 
 </div>
 
-<!-- Load Chart.js FIRST -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<!-- Then your JS -->
 <script src="script.js"></script>
 
 </body>
