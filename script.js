@@ -7,9 +7,6 @@ function checkSpeed() {
         return;
     }
 
-    speeds.push(speed);
-    labels.push("Ride " + speeds.length);
-    chart.update();
 
     if (speed > 80) {
         showAlert("⚠️ Over Speeding!");
