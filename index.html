@@ -2,32 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Zensor Lite - JARVIS UI</title>
+    <title>Zensor Lite - Jarvis UI</title>
+
+    <!-- Font (futuristic) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="hud">
 
-    <h1>ZENSOR LITE</h1>
+    <!-- Title -->
+    <h1>ZENSOR LITE 🚦</h1>
     <p class="sub">JARVIS BIKE SAFETY SYSTEM</p>
 
+    <!-- Main Panel -->
     <div class="panel">
 
-        <input type="number" id="speed" placeholder="ENTER SPEED">
+        <!-- Input -->
+        <input type="number" id="speed" placeholder="ENTER SPEED (km/h)">
 
+        <!-- Buttons -->
         <div class="buttons">
             <button onclick="checkSpeed()">CHECK SPEED</button>
-            <button onclick="fatigueAlert()">FATIGUE</button>
+            <button onclick="fatigueAlert()">FATIGUE ALERT</button>
             <button onclick="getWeather()">WEATHER</button>
         </div>
 
-        <div id="alerts"></div>
+        <!-- Alerts -->
+        <div id="alerts">SYSTEM READY...</div>
 
     </div>
 
 </div>
 
+<!-- Scripts -->
 <script src="script.js"></script>
+
 </body>
 </html>
