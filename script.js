@@ -1,45 +1,45 @@
+let speeds = [];
+let labels = [];
+
+// create chart
+let ctx = document.getElementById("speedChart").getContext("2d");
+
+let chart = new Chart(ctx, {
+    type: "line",
+    data: {
+        labels: labels,
+        datasets: [{
+            label: "Speed (km/h)",
+            data: speeds,
+            borderWidth: 2
+        }]
+    }
+});
+
 function checkSpeed() {
     let speed = document.getElementById("speed").value;
-    let alertBox = document.getElementById("alerts");
 
+    // store data
+    speeds.push(speed);
+    labels.push("Ride " + speeds.length);
+
+    // update graph
+    chart.update();
+
+    // alert
     if (speed > 80) {
-        alertBox.innerHTML = "⚠️ Over Speeding! Slow down.";
-        playBeep();
+        document.getElementById("alerts").innerHTML = "⚠️ Over Speeding!";
     } else {
-        alertBox.innerHTML = "✅ Safe Speed.";
+        document.getElementById("alerts").innerHTML = "✅ Safe Speed";
     }
 }
 
 function fatigueAlert() {
-    let alertBox = document.getElementById("alerts");
-    alertBox.innerHTML = "😴 Take a break! You might be tired.";
-    playBeep();
+    document.getElementById("alerts").innerHTML = "😴 Take a break!";
 }
 
-function getWeather() {
-    let alertBox = document.getElementById("alerts");
-
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=Delhi&appid=YOUR_API_KEY")
-    .then(response => response.json())
-    .then(data => {
-        let weather = data.weather[0].main;
-
-        if (weather.toLowerCase().includes("rain")) {
-            alertBox.innerHTML = "🌧️ Rain detected! Road may be slippery.";
-            playBeep();
-        } else {
-            alertBox.innerHTML = "☀️ Weather is clear.";
-        }
-    })
-    .catch(() => {
-        alertBox.innerHTML = "Error fetching weather.";
-    });
-}
-
-function playBeep() {
-    let audio = new Audio("https://www.soundjay.com/buttons/beep-01a.mp3");
-    audio.play();
-}
+// auto alert
 setInterval(() => {
-    document.getElementById("alerts").innerHTML = "⏰ Stay alert while riding!";
+    document.getElementById("alerts").innerHTML = "⏰ Stay alert!";
+}, 15000);alert while riding!";
 }, 15000);
