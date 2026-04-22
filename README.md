@@ -1,2 +1,17 @@
-# Zensor-Lite-Smart-Bike-Safety-Web-App
-A web-based simulation of a bike safety system that:  Detects risky riding conditions (speed, weather, fatigue simulation) Gives alerts to the rider Shows a dashboard of ride data. Features : Speed Monitoring , Fatigue Detection , Weather Safety , Dashboard , Smart Alerts . 
+# Zensor Lite 🚦
+
+This project is a basic simulation of a smart bike safety system.
+
+## Features
+- Speed monitoring
+- Fatigue alert system
+- Weather safety alerts
+- Sound warning system
+
+## Tech Used
+- HTML
+- CSS
+- JavaScript
+
+## Note
+This is a student-level project and not connected to real hardware.
