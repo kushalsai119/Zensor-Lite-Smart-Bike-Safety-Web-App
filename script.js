@@ -1,34 +1,31 @@
-
 function checkSpeed() {
     let speed = document.getElementById("speed").value;
 
     if (!speed) {
-        showAlert("Enter speed first!");
+        showAlert("ENTER SPEED");
         return;
     }
 
-
     if (speed > 80) {
-        showAlert("⚠️ Over Speeding!");
+        showAlert("⚠️ OVER SPEED DETECTED");
     } else {
-        showAlert("✅ Safe Speed");
+        showAlert("✅ SPEED NORMAL");
     }
 }
 
 function fatigueAlert() {
-    showAlert("😴 You might be tired. Take a break!");
+    showAlert("😴 DRIVER FATIGUE DETECTED");
 }
 
 function getWeather() {
-    showAlert("🌤 Weather feature coming soon");
+    showAlert("🌤 WEATHER SYSTEM LOADING...");
 }
 
-function showAlert(message) {
-    let box = document.getElementById("alerts");
-    box.innerHTML = message;
+function showAlert(msg) {
+    document.getElementById("alerts").innerHTML = msg;
 }
 
-// Auto alert
+// Auto system message
 setInterval(() => {
-    showAlert("⏰ Stay alert while riding!");
+    showAlert("SYSTEM ACTIVE...");
 }, 15000);
