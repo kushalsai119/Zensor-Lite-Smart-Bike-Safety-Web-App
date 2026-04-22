@@ -1,7 +1,11 @@
 body {
+   body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+
+    background: url("https://stock.adobe.com/search?k=%22drive+safe%22") no-repeat center center/cover;
+
+    height: 100vh;
     color: white;
 }
 
