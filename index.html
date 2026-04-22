@@ -2,36 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Zensor Lite</title>
+    <title>Zensor Lite - JARVIS UI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="main">
+<div class="hud">
 
-    <h1>Zensor Lite 🚦</h1>
-    <p class="subtitle">Smart Bike Safety Monitoring System</p>
+    <h1>ZENSOR LITE</h1>
+    <p class="sub">JARVIS BIKE SAFETY SYSTEM</p>
 
-    <div class="card">
+    <div class="panel">
 
-        <label>Enter Speed (km/h)</label>
-        <input type="number" id="speed" placeholder="e.g. 60">
+        <input type="number" id="speed" placeholder="ENTER SPEED">
 
         <div class="buttons">
-            <button onclick="checkSpeed()">Check Speed</button>
-            <button onclick="fatigueAlert()">Fatigue Alert</button>
-            <button onclick="getWeather()">Weather</button>
+            <button onclick="checkSpeed()">CHECK SPEED</button>
+            <button onclick="fatigueAlert()">FATIGUE</button>
+            <button onclick="getWeather()">WEATHER</button>
         </div>
 
         <div id="alerts"></div>
-
 
     </div>
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="script.js"></script>
-
 </body>
 </html>
