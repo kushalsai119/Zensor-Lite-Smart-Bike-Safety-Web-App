@@ -1,13 +1,32 @@
 body {
     font-family: Arial;
     text-align: center;
-    background-color: #0d1117;
+    background: #f4f4f4;
+}
+
+h1 {
+    background: #333;
     color: white;
+    padding: 15px;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
 }
 
 button {
     padding: 10px;
-    background-color: green;
-    color: white;
-    border: none;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#alerts {
+    margin-top: 20px;
+    font-weight: bold;
+    color: red;
 }
