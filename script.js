@@ -1,23 +1,3 @@
-let speeds = [];
-let labels = [];
-let chart;
-
-window.onload = function () {
-    let ctx = document.getElementById("speedChart").getContext("2d");
-
-    chart = new Chart(ctx, {
-        type: "line",
-        data: {
-            labels: labels,
-            datasets: [{
-                label: "Speed (km/h)",
-                data: speeds,
-                borderWidth: 3,
-                tension: 0.3
-            }]
-        }
-    });
-};
 
 function checkSpeed() {
     let speed = document.getElementById("speed").value;
