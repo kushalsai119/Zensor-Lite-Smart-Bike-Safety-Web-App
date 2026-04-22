@@ -14,15 +14,20 @@
 <div class="container">
 
     <label>Enter Speed (km/h):</label>
-    <input type="number" id="speed">
+    <input type="number" id="speed" placeholder="Enter speed">
+
+    <br><br>
 
     <button onclick="checkSpeed()">Check Speed</button>
     <button onclick="fatigueAlert()">I feel sleepy</button>
     <button onclick="getWeather()">Check Weather</button>
 
     <div id="alerts"></div>
-    <canvas id="speedChart"></canvas>
 
+    <br><br>
+
+    <!-- Graph -->
+    <canvas id="speedChart"></canvas>
 
 </div>
     </div>
