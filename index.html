@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Zensor Lite</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Zensor Lite Project</h1>
+    <h1>Zensor Lite - Bike Safety System</h1>
 
-<input type="number" id="speed" placeholder="Enter speed">
-<br><br>
+    <div class="container">
+        <label>Enter Speed (km/h):</label>
+        <input type="number" id="speed" placeholder="Enter speed">
 
-<button onclick="checkSpeed()">Check</button>
-<button onclick="fatigue()">Sleepy</button>
+        <button onclick="checkSpeed()">Check Speed</button>
+        <button onclick="fatigueAlert()">I feel sleepy</button>
+        <button onclick="getWeather()">Check Weather</button>
 
-<p id="output"></p>
+        <div id="alerts"></div>
+    </div>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
