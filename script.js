@@ -45,13 +45,20 @@ function showAlert(msg, color) {
 
 // 🎙️ VOICE (Jarvis effect)
 function speak(text) {
-    let speech = new SpeechSynthesisUtterance(text);
-    speech.rate = 1;
-    speech.pitch = 1;
-    speech.volume = 1;
-    window.speechSynthesis.speak(speech);
-}
+    if ('speechSynthesis' in window) {
+        let speech = new SpeechSynthesisUtterance(text);
 
+        speech.lang = "en-US";
+        speech.rate = 1;
+        speech.pitch = 1;
+        speech.volume = 1;
+
+        window.speechSynthesis.cancel(); // stop previous
+        window.speechSynthesis.speak(speech);
+    } else {
+        console.log("Speech not supported");
+    }
+}
 // Auto system message
 setInterval(() => {
     showAlert("SYSTEM MONITORING ACTIVE...", "#00eaff");
