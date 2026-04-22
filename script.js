@@ -1,18 +1,19 @@
 let speeds = [];
 let labels = [];
+let chart;
 
-// create chart AFTER page loads
 window.onload = function () {
     let ctx = document.getElementById("speedChart").getContext("2d");
 
-    window.chart = new Chart(ctx, {
+    chart = new Chart(ctx, {
         type: "line",
         data: {
             labels: labels,
             datasets: [{
                 label: "Speed (km/h)",
                 data: speeds,
-                borderWidth: 2
+                borderWidth: 3,
+                tension: 0.3
             }]
         }
     });
@@ -21,23 +22,36 @@ window.onload = function () {
 function checkSpeed() {
     let speed = document.getElementById("speed").value;
 
+    if (!speed) {
+        showAlert("Enter speed first!");
+        return;
+    }
+
     speeds.push(speed);
     labels.push("Ride " + speeds.length);
-
     chart.update();
 
     if (speed > 80) {
-        document.getElementById("alerts").innerHTML = "⚠️ Over Speeding!";
+        showAlert("⚠️ Over Speeding!");
     } else {
-        document.getElementById("alerts").innerHTML = "✅ Safe Speed";
+        showAlert("✅ Safe Speed");
     }
 }
 
 function fatigueAlert() {
-    document.getElementById("alerts").innerHTML = "😴 Take a break!";
+    showAlert("😴 You might be tired. Take a break!");
 }
 
-// ✅ correct auto alert
+function getWeather() {
+    showAlert("🌤 Weather feature coming soon");
+}
+
+function showAlert(message) {
+    let box = document.getElementById("alerts");
+    box.innerHTML = message;
+}
+
+// Auto alert
 setInterval(() => {
-    document.getElementById("alerts").innerHTML = "⏰ Stay alert while riding!";
+    showAlert("⏰ Stay alert while riding!");
 }, 15000);
