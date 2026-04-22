@@ -40,3 +40,6 @@ function playBeep() {
     let audio = new Audio("https://www.soundjay.com/buttons/beep-01a.mp3");
     audio.play();
 }
+setInterval(() => {
+    document.getElementById("alerts").innerHTML = "⏰ Stay alert while riding!";
+}, 15000);
