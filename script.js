@@ -1,84 +1,96 @@
+let map;
+let marker;
+let userInteracted = false;
+
+// detect user interaction (needed for auto actions)
+document.addEventListener("click", () => {
+    userInteracted = true;
+});
+
+// 🎯 SPEED CHECK
 function checkSpeed() {
     let speed = document.getElementById("speed").value;
 
     if (!speed) {
-        showAlert("ENTER SPEED", "yellow");
+        showAlert("ENTER SPEED");
         return;
     }
 
     if (speed > 80) {
-        showAlert("⚠️ OVER SPEED DETECTED", "red");
+        showAlert("⚠️ OVER SPEED DETECTED");
         speak("Warning! You are overspeeding");
 
-        // 🚨 AUTO OPEN MAP
-        sendLocation();
-    } 
-    else if (speed < 30) {
-        showAlert("⚡ SPEED TOO LOW", "orange");
-        speak("Speed is too low");
-    } 
-    else {
-        showAlert("✅ SPEED NORMAL", "green");
-        speak("Speed is normal");
-    }
-}
-
-function fatigueAlert() {
-    showAlert("😴 DRIVER FATIGUE DETECTED", "orange");
-    speak("Driver fatigue detected. Please take a break");
-}
-
-function getWeather() {
-    showAlert("🌤 WEATHER SYSTEM ACTIVE", "blue");
-    speak("Weather system activated");
-}
-
-function showAlert(msg, color) {
-    let box = document.getElementById("alerts");
-    box.innerHTML = msg;
-    box.style.color = color;
-
-    if (color === "red") {
-        box.classList.add("blink");
+        // 🚨 Auto trigger (only after user interaction)
+        if (userInteracted) {
+            setTimeout(() => {
+                sendLocation();
+                notifyParent();
+            }, 1000);
+        }
     } else {
-        box.classList.remove("blink");
+        showAlert("✅ SPEED NORMAL");
     }
 }
 
-/* 🎙️ Voice */
-function speak(text) {
-    if ('speechSynthesis' in window) {
-        let speech = new SpeechSynthesisUtterance(text);
-        speech.rate = 0.9;
-        speech.pitch = 0.8;
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(speech);
-    }
-}
-
-/* 📍 LOCATION + MAP */
+// 📍 GET LOCATION + MAP + GOOGLE MAPS
 function sendLocation() {
-
     if (!navigator.geolocation) {
         alert("Geolocation not supported");
         return;
     }
 
-    navigator.geolocation.getCurrentPosition(
-        function(position) {
+    navigator.geolocation.getCurrentPosition(pos => {
+        let lat = pos.coords.latitude;
+        let lon = pos.coords.longitude;
 
-            let lat = position.coords.latitude;
-            let lon = position.coords.longitude;
+        // 🌐 Open Google Maps
+        let mapURL = `https://www.google.com/maps?q=${lat},${lon}`;
+        window.open(mapURL, "_blank");
 
-            let mapURL = `https://www.google.com/maps?q=${lat},${lon}`;
+        // 🗺️ Show inside app (dark map)
+        if (!map) {
+            map = L.map('map').setView([lat, lon], 13);
 
-            // ✅ Use location.href instead of window.open
-            window.location.href = mapURL;
-
-        },
-        function(error) {
-            alert("Location permission denied or error occurred");
-            console.log(error);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data'
+            }).addTo(map);
         }
-    );
+
+        if (marker) {
+            map.removeLayer(marker);
+        }
+
+        marker = L.marker([lat, lon]).addTo(map);
+
+    }, () => {
+        alert("Location permission needed");
+    });
+}
+
+// 📲 SEND TO PARENT (WhatsApp)
+function notifyParent() {
+    let parentNumber = "91XXXXXXXXXX"; // 👉 PUT PARENT NUMBER HERE
+
+    navigator.geolocation.getCurrentPosition(pos => {
+        let lat = pos.coords.latitude;
+        let lon = pos.coords.longitude;
+
+        let link = `https://www.google.com/maps?q=${lat},${lon}`;
+        let message = `Emergency! Overspeed detected. Location: ${link}`;
+
+        let url = `https://wa.me/${parentNumber}?text=${encodeURIComponent(message)}`;
+
+        window.open(url, "_blank");
+    });
+}
+
+// 🔊 VOICE
+function speak(text) {
+    let speech = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(speech);
+}
+
+// 🧠 ALERT
+function showAlert(msg) {
+    document.getElementById("alerts").innerHTML = msg;
 }
