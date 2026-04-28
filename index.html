@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Zensor Lite - Jarvis UI</title>
+<meta charset="UTF-8">
+<title>Zensor Lite - Smart Safety</title>
 
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet" href="style.css">
+<!-- Leaflet (for themed map inside app) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 </head>
 <body>
 
 <div class="hud">
-
     <h1>ZENSOR LITE 🚦</h1>
-    <p class="sub">JARVIS BIKE SAFETY SYSTEM</p>
+    <p class="sub">Smart Bike Safety System</p>
 
     <div class="panel">
-
         <input type="number" id="speed" placeholder="ENTER SPEED (km/h)">
 
         <div class="buttons">
             <button onclick="checkSpeed()">CHECK SPEED</button>
-            <button onclick="fatigueAlert()">FATIGUE ALERT</button>
-            <button onclick="getWeather()">WEATHER</button>
             <button onclick="sendLocation()">SEND LOCATION</button>
         </div>
 
         <div id="alerts">SYSTEM READY...</div>
 
+        <!-- Map inside app -->
+        <div id="map"></div>
     </div>
-
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
+
