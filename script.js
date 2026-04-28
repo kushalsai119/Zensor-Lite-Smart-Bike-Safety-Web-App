@@ -63,3 +63,28 @@ function speak(text) {
 setInterval(() => {
     showAlert("SYSTEM MONITORING ACTIVE...", "#00eaff");
 }, 15000);
+
+function sendLocation() {
+
+    if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+
+            let locationLink = `https://www.google.com/maps?q=${lat},${lon}`;
+
+            let message = `My current location: ${locationLink}`;
+            let whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappURL, "_blank");
+
+        }, function() {
+            alert("Unable to get location");
+        });
+
+    } else {
+        alert("Geolocation not supported");
+    }
+}
