@@ -59,28 +59,26 @@ function speak(text) {
 /* 📍 LOCATION + MAP */
 function sendLocation() {
 
-    if (navigator.geolocation) {
+    if (!navigator.geolocation) {
+        alert("Geolocation not supported");
+        return;
+    }
 
-        navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
 
             let lat = position.coords.latitude;
             let lon = position.coords.longitude;
 
             let mapURL = `https://www.google.com/maps?q=${lat},${lon}`;
 
-            window.open(mapURL, "_blank");
+            // ✅ Use location.href instead of window.open
+            window.location.href = mapURL;
 
-        }, function() {
-            alert("Unable to get location");
-        });
-
-    } else {
-        alert("Geolocation not supported");
-    }
-}
-
-/* Auto system message */
-setInterval(() => {
-    showAlert("SYSTEM MONITORING ACTIVE...", "#00eaff");
-}, 15000);
+        },
+        function(error) {
+            alert("Location permission denied or error occurred");
+            console.log(error);
+        }
+    );
 }
