@@ -9,6 +9,9 @@ function checkSpeed() {
     if (speed > 80) {
         showAlert("⚠️ OVER SPEED DETECTED", "red");
         speak("Warning! You are overspeeding");
+
+        // 🚨 AUTO OPEN MAP
+        sendLocation();
     } 
     else if (speed < 30) {
         showAlert("⚡ SPEED TOO LOW", "orange");
@@ -35,7 +38,6 @@ function showAlert(msg, color) {
     box.innerHTML = msg;
     box.style.color = color;
 
-    // blinking effect for danger
     if (color === "red") {
         box.classList.add("blink");
     } else {
@@ -43,27 +45,18 @@ function showAlert(msg, color) {
     }
 }
 
-// 🎙️ VOICE (Jarvis effect)
+/* 🎙️ Voice */
 function speak(text) {
     if ('speechSynthesis' in window) {
         let speech = new SpeechSynthesisUtterance(text);
-
-        speech.lang = "en-US";
-        speech.rate = 1;
-        speech.pitch = 1;
-        speech.volume = 1;
-
-        window.speechSynthesis.cancel(); // stop previous
+        speech.rate = 0.9;
+        speech.pitch = 0.8;
+        window.speechSynthesis.cancel();
         window.speechSynthesis.speak(speech);
-    } else {
-        console.log("Speech not supported");
     }
 }
-// Auto system message
-setInterval(() => {
-    showAlert("SYSTEM MONITORING ACTIVE...", "#00eaff");
-}, 15000);
 
+/* 📍 LOCATION + MAP */
 function sendLocation() {
 
     if (navigator.geolocation) {
@@ -73,12 +66,9 @@ function sendLocation() {
             let lat = position.coords.latitude;
             let lon = position.coords.longitude;
 
-            let locationLink = `https://www.google.com/maps?q=${lat},${lon}`;
+            let mapURL = `https://www.google.com/maps?q=${lat},${lon}`;
 
-            let message = `My current location: ${locationLink}`;
-            let whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
-
-            window.open(whatsappURL, "_blank");
+            window.open(mapURL, "_blank");
 
         }, function() {
             alert("Unable to get location");
@@ -87,4 +77,10 @@ function sendLocation() {
     } else {
         alert("Geolocation not supported");
     }
+}
+
+/* Auto system message */
+setInterval(() => {
+    showAlert("SYSTEM MONITORING ACTIVE...", "#00eaff");
+}, 15000);
 }
