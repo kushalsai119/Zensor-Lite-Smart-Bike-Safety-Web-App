@@ -9,46 +9,30 @@ body {
     height: 100vh;
 }
 
-/* HUD */
-.hud {
-    text-align: center;
-}
+.hud { text-align: center; }
 
-h1 {
-    font-size: 40px;
-    text-shadow: 0 0 10px #00eaff;
-}
-
-.sub {
-    opacity: 0.7;
-    margin-bottom: 20px;
-}
-
-/* Panel */
 .panel {
-    padding: 25px;
+    padding: 20px;
     border: 2px solid #00eaff;
-    border-radius: 10px;
     box-shadow: 0 0 20px #00eaff;
+    width: 320px;
 }
 
-/* Input */
 input {
-    width: 90%;
+    width: 100%;
     padding: 10px;
+    margin-bottom: 10px;
     background: black;
     border: 1px solid #00eaff;
     color: #00eaff;
-    text-align: center;
 }
 
-/* Buttons */
 button {
     width: 100%;
     margin: 5px 0;
     padding: 10px;
-    background: transparent;
     border: 1px solid #00eaff;
+    background: transparent;
     color: #00eaff;
     cursor: pointer;
 }
@@ -58,17 +42,13 @@ button:hover {
     color: black;
 }
 
-/* Alerts */
 #alerts {
+    margin-top: 10px;
+}
+
+/* Dark themed map */
+#map {
+    height: 200px;
     margin-top: 15px;
-    font-size: 18px;
-}
-
-/* Blink */
-.blink {
-    animation: blink 1s infinite;
-}
-
-@keyframes blink {
-    50% { opacity: 0; }
+    border: 1px solid #00eaff;
 }
